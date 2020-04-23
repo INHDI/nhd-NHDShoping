@@ -1,0 +1,35 @@
+﻿
+{% extends 'San_Pham/index.html' %}.
+{% block title %}Đồ ăn{% endblock %}
+
+{% block conten %}
+	<form  class="tong mt-5" method="get">{% csrf_token %}
+	<div class="danhmuc">
+		<p style="color: red"><font size="+2"><strong>Danh Mục</strong></font></p>
+		<hr color="red" />
+        {% for item in loai %}
+		<p><a href="/home/sanpham/{{item.id}}">{{item.Loai_sp}}</a></p>
+		{% endfor %}
+	</div>
+	<div class="sanpham">
+		<div class="row row-cols-1 row-cols-md-3">
+            {%for item in f %}
+  			<div class="col mb-4">
+                <div class="card">
+                     {% load static %}
+                    <img src="{%static 'media/'%}{{item.San_Pham.Anh}}" class="card-img-top" alt="...">
+                    <div class="card-body">
+                        <h5 class="card-title"><a href="/home/sanpham/chitiet/{{item.id}}">{{item.San_Pham.Ten_sp}}</a></h5>
+                        <p class="card-text">Loại Sản Phẩm: {{item.San_Pham.Loai_sp}}</p>
+		                <p><strike>Giá tiền: {{item.Gia_ban}} đ</strike></p>
+		                <p style="color:red">Giá sau sale: {{item.Gia_sale}} đ</p>
+		                <button onclick="addCart({{item.id}})"> Mua hàng</button>
+                    </div>
+                </div>
+            </div>
+            {%endfor%}
+		</div>	
+	</div>
+	</form>
+	
+{% endblock %}
