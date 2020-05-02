@@ -13,7 +13,7 @@ class LoaiSPModel(models.Model):
 
 
 class SanPhamModel(models.Model):
-    Ma_sp = models.CharField(primary_key = True, max_length=10, verbose_name='Mã Sản Phẩm')
+    Ma_sp = models.CharField( max_length=10, verbose_name='Mã Sản Phẩm')
     Loai_sp = models.ForeignKey(LoaiSPModel,on_delete=models.CASCADE,default=1)
     Ten_sp = models.CharField(max_length=50, verbose_name='Tên Sản Phẩm', blank=True)
     Mo_ta = models.TextField(verbose_name='Mô Tả')
